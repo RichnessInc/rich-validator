@@ -11,5 +11,12 @@
         "url": "git+https://github.com/RichnessInc/rich-validator.git"
     },
     "author": "Omar Khalid",
-    "license": "MIT"
+    "license": "MIT",
+    "keywords": [
+        "client side validation",
+        "validator",
+        "javascript validation",
+        "form validation",
+        "form validation library"
+    ]
 }
