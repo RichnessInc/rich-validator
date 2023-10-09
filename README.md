@@ -3,7 +3,7 @@
 
 [![MIT License](https://camo.githubusercontent.com/fd551ba4b042d89480347a0e74e31af63b356b2cac1116c7b80038f41b04a581/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f4c6963656e73652d4d49542d677265656e2e737667)](https://choosealicense.com/licenses/mit/)  [![Made With Love](https://camo.githubusercontent.com/ff817852f0d676a36eaa3108d380e0052e689d9e0bc3eb42818fb21008708420/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f4d616465253230576974682d4c6f76652d6f72616e67652e737667)](https://github.com/chetanraj/awesome-github-badges)
 
-![enter image description here](https://i.ibb.co/v14whsC/Dark-Blue-Minimal-Technology-Logo-1.jpg)
+![enter image description here](https://i.ibb.co/7WQxDSc/Dark-Blue-Minimal-Technology-Logo.jpg)
 
 # Introduction
 
