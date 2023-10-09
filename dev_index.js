@@ -347,6 +347,5 @@ function validator(form) {
 }
 
 
-
-const _validator = validator;
-export { _validator as validator };
+/* eslint-disable */
+module.exports.validator = validator; // eslint-disabled
