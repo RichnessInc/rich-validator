@@ -1,0 +1,15 @@
+{
+    "name": "rich-validator",
+    "version": "0.1.0",
+    "description": "Client Side Form Validator",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/RichnessInc/rich-validator.git"
+    },
+    "author": "Omar Khalid",
+    "license": "MIT"
+}

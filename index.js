@@ -1,0 +1,348 @@
+function checkIfInputRequired(input) {
+    return (input.value != null && input.value != '' && input.value[0] != null && input.value[0] != '' && input.value[0] != undefined ? true : false);
+}
+
+function required(input) {
+    let getValue = input.value[0];
+    let status = false;
+    if (getValue == '' || getValue == undefined) {
+        status = true;
+    }
+    return {
+        status: status,
+        name: input.getAttribute('name'),
+        message: (input.getAttribute('data-error-message') != null && input.getAttribute('data-error-message') != undefined ? input.getAttribute('data-error-message') : input.getAttribute('name') + ' ' + 'Field is Required')
+    };
+}
+
+function FileSizeValidation(inputFile) {
+    let status = false;
+    let message = '';
+    console.log(checkIfInputRequired(inputFile) && inputFile.classList.contains('validate-size'));
+    if (checkIfInputRequired(inputFile) && inputFile.classList.contains('validate-size')) {
+        if (inputFile.files.length > 0) {
+            for (let i = 0; i <= inputFile.files.length - 1; i++) {
+                let fileSize = inputFile.files.item(i).size;
+                let file = Math.round((fileSize / 1024));
+                if (file > inputFile.dataset.size) {
+                    status = true;
+                    message = (input.getAttribute('data-error-message') != null && input.getAttribute('data-error-message') != undefined ? input.getAttribute('data-error-message') : 'File is very large') + ' : ' + ' [' + inputFile.dataset.size + 'KB]'
+
+                }
+            }
+        }
+    }
+    return {
+        status: status,
+        name: inputFile.getAttribute('name'),
+        message: message
+    };
+}
+
+function goodPassword(input) {
+    let password = input.value;
+    let status = false;
+    let message = '';
+    if (checkIfInputRequired(input)) {
+        if (password.length < 8) {
+            message = 'Error: Password must be at least 8 characters';
+            status = true;
+        } else if (password.length > 32) {
+            message = 'Error: Password is very long';
+            status = true;
+        } else if (password.search(/[a-z]/) < 0) {
+            message = 'Error: Password must contain at least one lowercase letter';
+            status = true;
+        } else if (password.search(/[A-Z]/) < 0) {
+            message = 'Error: Password must contain at least one uppercase letter';
+            status = true;
+        } else if (password.search(/[0-9]/) < 0) {
+            message = 'Error: Password must contain at least one number';
+            status = true;
+        } else if (password.search(/[!%@&*\s]/) < 0) {
+            message = 'Error: Password must contain at least spatial letter';
+            status = true;
+        } else {
+            message = 'Success!';
+        }
+    }
+    return {
+        status: status,
+        name: input.getAttribute('name'),
+        message: message
+    };
+}
+
+function validateEmail(input) {
+    localStorage.removeItem('user_has_disposable_email');
+
+    let status = false;
+    let message = '';
+    if (checkIfInputRequired(input)) {
+        let validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+        if (input.value.match(validRegex)) {
+            status = false;
+            message = 'Success!';
+        } else {
+            status = true;
+            message = (input.getAttribute('data-error-message') != null && input.getAttribute('data-error-message') != undefined ? input.getAttribute('data-error-message') : 'Invalid email address!')
+
+
+        }
+    }
+    return {
+        status: status,
+        name: input.getAttribute('name'),
+        message: message
+    };
+}
+
+function phoneNumber(input) {
+    let status = false;
+    if (checkIfInputRequired(input)) {
+        status = true
+        let re = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
+        if (re.test(input.value)) {
+            status = false;
+        }
+    }
+    return {
+        status: status,
+        name: input.getAttribute('name'),
+        message: (input.getAttribute('data-error-message') != null && input.getAttribute('data-error-message') != undefined ? input.getAttribute('data-error-message') : input.getAttribute('name') + ' ' + 'Bad Format')
+    };
+}
+
+function globalMaxLength(input) {
+    let maxLength = 255;
+    let status = false;
+    let message = '';
+    if (checkIfInputRequired(input)) {
+        if (input.getAttribute('rich-length') != null || input.getAttribute('rich-length') != undefined) {
+            maxLength = input.getAttribute('rich-length');
+        }
+        if (input.value.length > maxLength) {
+            message = (input.getAttribute('data-error-message') != null && input.getAttribute('data-error-message') != undefined ? input.getAttribute('data-error-message') : 'Error: ' + input.getAttribute('name') + ' is very long')
+
+            status = true;
+        }
+    }
+
+    return {
+        status: status,
+        name: input.getAttribute('name'),
+        message: message
+    };
+}
+
+function imageValidate(fileInput) {
+    let status = false;
+    let message = '';
+    if (checkIfInputRequired(fileInput)) {
+        let filePath = fileInput.value;
+        let allowedExtensions = /(\.jpg|\.jpeg|\.png|\.webp)$/i;
+        console.log(allowedExtensions.exec(filePath));
+        if (!allowedExtensions.exec(filePath)) {
+            fileInput.value = '';
+            message = 'Error: ' + fileInput.getAttribute('name') + ' Invalid file type [ jpg,jpeg,png,webp ]';
+            status = true;
+        }
+    }
+    return {
+        status: status,
+        name: fileInput.getAttribute('name'),
+        message: message
+    };
+}
+
+function textInputFileValidate(fileInput) {
+    let status = false;
+    let message = '';
+    if (checkIfInputRequired(fileInput)) {
+        let filePath = fileInput.value;
+        let allowedExtensions = /(\.text|\.txt)$/i;
+        console.log(allowedExtensions.exec(filePath));
+        if (!allowedExtensions.exec(filePath)) {
+            fileInput.value = '';
+            message = (input.getAttribute('data-error-message') != null && input.getAttribute('data-error-message') != undefined ? input.getAttribute('data-error-message') : 'Error: ' + input.getAttribute('name') + ' Invalid file type [ text,txt ]')
+
+            status = true;
+        }
+    }
+    return {
+        status: status,
+        name: fileInput.getAttribute('name'),
+        message: message
+    };
+}
+
+function pdfInputFileValidate(fileInput) {
+    let status = false;
+    let message = '';
+    if (checkIfInputRequired(fileInput)) {
+        let filePath = fileInput.value;
+        let allowedExtensions = /(\.pdf)$/i;
+        console.log(allowedExtensions.exec(filePath));
+        if (!allowedExtensions.exec(filePath)) {
+            fileInput.value = '';
+            message = (input.getAttribute('data-error-message') != null && input.getAttribute('data-error-message') != undefined ? input.getAttribute('data-error-message') : 'Error: ' + input.getAttribute('name') + ' Invalid file type [ pdf ]')
+            status = true;
+        }
+    }
+    return {
+        status: status,
+        name: fileInput.getAttribute('name'),
+        message: message
+    };
+}
+
+function docInputFileValidate(fileInput) {
+    let status = false;
+    let message = '';
+    if (checkIfInputRequired(fileInput)) {
+        let filePath = fileInput.value;
+        let allowedExtensions = /(\.odt|\.docx)$/i;
+        console.log(allowedExtensions.exec(filePath));
+        if (!allowedExtensions.exec(filePath)) {
+            fileInput.value = '';
+            message = (input.getAttribute('data-error-message') != null && input.getAttribute('data-error-message') != undefined ? input.getAttribute('data-error-message') : 'Error: ' + input.getAttribute('name') + ' Invalid file type [ doc,docx ]')
+            status = true;
+        }
+    }
+    return {
+        status: status,
+        name: fileInput.getAttribute('name'),
+        message: message
+    };
+}
+
+function createErrorMessage(input, response) {
+    let label = document.createElement('label');
+    let labelText = document.createTextNode(response.message);
+    label.className = 'validation-error';
+    label.appendChild(labelText);
+    input.parentElement.appendChild(label);
+}
+
+function validator(form) {
+    let errors = [];
+    let validationError = form.querySelectorAll('.validation-error');
+    let requiredInput = form.querySelectorAll('.required');
+    let phoneNumberInput = form.querySelectorAll('.phone-number');
+    let passwordInput = form.querySelectorAll('.password');
+    let textInput = form.querySelectorAll("input[type='text']");
+    let emailInput = form.querySelectorAll('.validate-email');
+    let imageInput = form.querySelectorAll('.validate-image');
+    let textFileInput = form.querySelectorAll('.validate-text');
+    let pdfFileInput = form.querySelectorAll('.validate-pdf');
+    let docFileInput = form.querySelectorAll('.validate-doc');
+    let fileSizeInput = form.querySelectorAll('.validate-size');
+
+
+    if (validationError.length > 0) {
+        validationError.forEach((err) => {
+            err.remove();
+        });
+    }
+    if (requiredInput.length > 0) {
+        requiredInput.forEach((input) => {
+            let response = required(input);
+            if (response.status) {
+                createErrorMessage(input, response);
+                errors.push(response);
+            }
+        });
+    }
+    if (phoneNumberInput.length > 0) {
+        phoneNumberInput.forEach((input) => {
+            let response = phoneNumber(input);
+            if (response.status) {
+                createErrorMessage(input, response);
+                errors.push(response);
+            }
+        });
+    }
+    if (passwordInput.length > 0) {
+        passwordInput.forEach((input) => {
+            let response = goodPassword(input);
+            if (response.status) {
+                createErrorMessage(input, response);
+                errors.push(response);
+            }
+        });
+    }
+    if (textInput.length > 0) {
+        textInput.forEach((input) => {
+            let response = globalMaxLength(input);
+            if (response.status) {
+                createErrorMessage(input, response);
+                errors.push(response);
+            }
+
+        });
+    }
+    if (emailInput.length > 0) {
+        emailInput.forEach((input) => {
+            let response = validateEmail(input);
+            if (response.status) {
+                createErrorMessage(input, response);
+                errors.push(response);
+            }
+        });
+    }
+    if (imageInput.length > 0) {
+        imageInput.forEach((input) => {
+            let response = imageValidate(input);
+            if (response.status) {
+                createErrorMessage(input, response);
+                errors.push(response);
+            }
+        });
+    }
+    if (textFileInput.length > 0) {
+        textFileInput.forEach((input) => {
+            let response = textInputFileValidate(input);
+            if (response.status) {
+                createErrorMessage(input, response);
+                errors.push(response);
+            }
+        });
+    }
+    if (pdfFileInput.length > 0) {
+        pdfFileInput.forEach((input) => {
+            let response = pdfInputFileValidate(input);
+            if (response.status) {
+                createErrorMessage(input, response);
+                errors.push(response);
+            }
+        });
+    }
+
+    if (docFileInput.length > 0) {
+        docFileInput.forEach((input) => {
+            let response = docInputFileValidate(input);
+            if (response.status) {
+                createErrorMessage(input, response);
+                errors.push(response);
+            }
+        });
+    }
+    if (fileSizeInput.length > 0) {
+        fileSizeInput.forEach((input) => {
+            let response = FileSizeValidation(input);
+            if (response.status) {
+                createErrorMessage(input, response);
+                errors.push(response);
+            }
+        });
+    }
+    if (errors.length == 0) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+
+
+module.exports.validator = validator;
