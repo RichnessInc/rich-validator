@@ -3,9 +3,11 @@
     "version": "1.1.0",
     "description": "Client Side Form Validator",
     "main": "index.js",
+    "mode": "development",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "lint": "eslint ./index.js --fix"
+        "lint": "eslint ./index.js --fix",
+        "build": "minify dev_index.js > index.js"
     },
     "repository": {
         "type": "git",
@@ -21,6 +23,7 @@
         "form validation library"
     ],
     "devDependencies": {
-        "eslint": "^8.51.0"
-    }
+        "eslint": "^8.51.0",
+        "minify": "^10.5.2"
+        }
 }
