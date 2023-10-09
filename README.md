@@ -44,7 +44,7 @@ if (MainFormValidation) {
 
 # Validation Classes
 
-> Note : The package has a global rule for any input in the targeted with [type='text'] to make max length 255 character.
+> :warning: The package has a global rule for any input in the targeted with [type='text'] to make max length 255 character.
 
 if you want change the default max length you must add ths
 
