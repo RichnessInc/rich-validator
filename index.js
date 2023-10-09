@@ -2,16 +2,26 @@ function checkIfInputRequired(input) {
     return (input.value != null && input.value != '' && input.value[0] != null && input.value[0] != '' && input.value[0] != undefined ? true : false);
 }
 
+function checkAttribute(attributeName) {
+    let attribute = input.getAttribute(attributeName);
+    return (attribute != null && attribute != undefined && attribute != '' ? true : false);
+}
+
+function attributeMessageHandler(input) {
+    return input.getAttribute('name').replace("_", " ");
+}
+
 function required(input) {
     let getValue = input.value[0];
     let status = false;
     if (getValue == '' || getValue == undefined) {
         status = true;
     }
+    let message = (checkAttribute('data-required-error') ? input.getAttribute('data-required-error') : attributeMessageHandler(input) + ' is Required');
     return {
         status: status,
         name: input.getAttribute('name'),
-        message: (input.getAttribute('data-error-message') != null && input.getAttribute('data-error-message') != undefined ? input.getAttribute('data-error-message') : input.getAttribute('name') + ' ' + 'Field is Required')
+        message: message
     };
 }
 
@@ -26,8 +36,7 @@ function FileSizeValidation(inputFile) {
                 let file = Math.round((fileSize / 1024));
                 if (file > inputFile.dataset.size) {
                     status = true;
-                    message = (input.getAttribute('data-error-message') != null && input.getAttribute('data-error-message') != undefined ? input.getAttribute('data-error-message') : 'File is very large') + ' : ' + ' [' + inputFile.dataset.size + 'KB]'
-
+                    message = (checkAttribute('data-file-size-error') ? input.getAttribute('data-file-size-error') : attributeMessageHandler(input) + ' File is very large') + inputFile.dataset.size + 'MB';
                 }
             }
         }
@@ -74,8 +83,6 @@ function goodPassword(input) {
 }
 
 function validateEmail(input) {
-    localStorage.removeItem('user_has_disposable_email');
-
     let status = false;
     let message = '';
     if (checkIfInputRequired(input)) {
@@ -85,9 +92,7 @@ function validateEmail(input) {
             message = 'Success!';
         } else {
             status = true;
-            message = (input.getAttribute('data-error-message') != null && input.getAttribute('data-error-message') != undefined ? input.getAttribute('data-error-message') : 'Invalid email address!')
-
-
+            message = (checkAttribute('data-email-error') ? input.getAttribute('data-email-error') : attributeMessageHandler(input) + ' Invalid email address!');
         }
     }
     return {
@@ -106,10 +111,11 @@ function phoneNumber(input) {
             status = false;
         }
     }
+    let message = (checkAttribute('data-phone-error') ? input.getAttribute('data-phone-error') : attributeMessageHandler(input) + ' Bad Format!');
     return {
         status: status,
         name: input.getAttribute('name'),
-        message: (input.getAttribute('data-error-message') != null && input.getAttribute('data-error-message') != undefined ? input.getAttribute('data-error-message') : input.getAttribute('name') + ' ' + 'Bad Format')
+        message: message
     };
 }
 
@@ -122,12 +128,10 @@ function globalMaxLength(input) {
             maxLength = input.getAttribute('rich-length');
         }
         if (input.value.length > maxLength) {
-            message = (input.getAttribute('data-error-message') != null && input.getAttribute('data-error-message') != undefined ? input.getAttribute('data-error-message') : 'Error: ' + input.getAttribute('name') + ' is very long')
-
+            message = (checkAttribute('data-global-error') ? input.getAttribute('data-global-error') : attributeMessageHandler(input) + ' is very long!');
             status = true;
         }
     }
-
     return {
         status: status,
         name: input.getAttribute('name'),
@@ -144,7 +148,7 @@ function imageValidate(fileInput) {
         console.log(allowedExtensions.exec(filePath));
         if (!allowedExtensions.exec(filePath)) {
             fileInput.value = '';
-            message = 'Error: ' + fileInput.getAttribute('name') + ' Invalid file type [ jpg,jpeg,png,webp ]';
+            message = (checkAttribute('data-image-error') ? input.getAttribute('data-image-error') : attributeMessageHandler(input) + ' Invalid file type [ jpg,jpeg,png,webp ]');
             status = true;
         }
     }
@@ -164,8 +168,7 @@ function textInputFileValidate(fileInput) {
         console.log(allowedExtensions.exec(filePath));
         if (!allowedExtensions.exec(filePath)) {
             fileInput.value = '';
-            message = (input.getAttribute('data-error-message') != null && input.getAttribute('data-error-message') != undefined ? input.getAttribute('data-error-message') : 'Error: ' + input.getAttribute('name') + ' Invalid file type [ text,txt ]')
-
+            message = (checkAttribute('data-text-error') ? input.getAttribute('data-text-error') : attributeMessageHandler(input) + ' Invalid file type [ text,txt ]');
             status = true;
         }
     }
@@ -185,7 +188,7 @@ function pdfInputFileValidate(fileInput) {
         console.log(allowedExtensions.exec(filePath));
         if (!allowedExtensions.exec(filePath)) {
             fileInput.value = '';
-            message = (input.getAttribute('data-error-message') != null && input.getAttribute('data-error-message') != undefined ? input.getAttribute('data-error-message') : 'Error: ' + input.getAttribute('name') + ' Invalid file type [ pdf ]')
+            message = (checkAttribute('data-pdf-error') ? input.getAttribute('data-pdf-error') : attributeMessageHandler(input) + ' Invalid file type [ pdf ]');
             status = true;
         }
     }
@@ -205,7 +208,7 @@ function docInputFileValidate(fileInput) {
         console.log(allowedExtensions.exec(filePath));
         if (!allowedExtensions.exec(filePath)) {
             fileInput.value = '';
-            message = (input.getAttribute('data-error-message') != null && input.getAttribute('data-error-message') != undefined ? input.getAttribute('data-error-message') : 'Error: ' + input.getAttribute('name') + ' Invalid file type [ doc,docx ]')
+            message = (checkAttribute('data-doc-error') ? input.getAttribute('data-doc-error') : attributeMessageHandler(input) + ' Invalid file type [ doc,docx ]');
             status = true;
         }
     }
