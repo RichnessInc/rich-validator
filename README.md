@@ -22,6 +22,9 @@ JavaScript is efficient for this task, so we relied on it in developing this lib
 
 # Usage
 
+> :warning: ***The package return bool (True - False)*** .
+
+
 ```js
 import { validator } from 'rich-validator';
 
@@ -103,4 +106,76 @@ if our library detect validation error for this input we append error message in
 
 ### Customize error messages
 
-> :warning: Still in development phase
+```html
+    <!-- Customize Error Messages-->
+    <!-- Required Validation Error -->
+    <input 
+    type='text' 
+    data-required-error='Custom Required Error Message'
+    class='required' />
+    <!-- Phone Number Validation Error -->
+    <input 
+    type='text' 
+    data-phone-error='Custom Phone Number Error Message'
+    class='phone-number' />
+    <!-- Email Validation Error -->
+    <input 
+    type='text' 
+    data-email-error='Custom Email Error Message'
+    class='validate-email' />
+    <!-- Image Validation Error -->
+    <input 
+    type='file' 
+    data-image-error='Custom Image Error Message'
+    class='validate-image' />
+    <!-- Text File Validation Error -->
+    <input 
+    type='file' 
+    data-text-error='Custom Text File Error Message'
+    class='validate-text' />
+    <!-- PDF File Validation Error -->
+    <input 
+    type='file' 
+    data-pdf-error='Custom PDF File Error Message'
+    class='validate-pdf' />
+    <!-- DOCS File Validation Error -->
+    <input 
+    type='file' 
+    data-doc-error='Custom DOCS File Error Message'
+    class='validate-pdf' />
+```
+
+#### Customize password validation error messages
+
+```html
+    <!-- Custom Password Min Length Error Message -->
+    <input 
+    type='password' 
+    data-password-error-min-length='Custom Password Min Length Error Message'
+    class='password' />
+    <!-- Custom Password Max Length Error Message -->
+    <input 
+    type='password' 
+    data-password-error-max-length='Custom Password Max Length Error Message'
+    class='password' />
+    <!-- Custom Password Minimum One Character Lowercase Error Message -->
+    <input 
+    type='password' 
+    data-password-error-lowercase='Custom Password Minimum One Character Lowercase Error Message'
+    class='password' />
+    <!-- Custom Password Minimum One Character uppercase Error Message -->
+    <input 
+    type='password' 
+    data-password-error-uppercase='Custom Password Minimum One Character uppercase Error Message'
+    class='password' />
+    <!-- Custom Password Minimum One Character uppercase Error Message -->
+    <input 
+    type='password' 
+    data-password-error-number='Custom Password Minimum One Number Error Message'
+    class='password' />
+    <!-- Custom Password Minimum One Spatial Character Error Message -->
+    <input 
+    type='password' 
+    data-password-error-spatial='Custom Password Minimum One Spatial Character Error Message'
+    class='password' />
+```
