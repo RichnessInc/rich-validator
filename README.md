@@ -7,23 +7,26 @@
 
 # Introduction
 
-Hi Richness Provide to Any one Open-Source Client Side Form Validation, **why we provide this library**.
-Validation is a very important to make sure the data is valid.
+## why we provide this library
 
+Validation is a very important to make sure the data is valid.
 However, if you leave the burden of data validation on the server alone, you will be wasting a lot of time and resources.
 
 Because the server can only validate the data by sending a request, and this consumes a lot of time and resources, there must be a way to validate the data before sending the request to the server.
+
+## Why Vanilla Javascript
 
 JavaScript is efficient for this task, so we relied on it in developing this library. We also wrote it in vanilla JavaScript so that it is compatible with your programming language, no matter which one you use to develop your system.
 
 # Installation
 
-> npm i rich-validator
+```vim
+    npm i rich-validator
+```
 
 # Usage
 
 > :warning: ***The package return bool (True - False)*** .
-
 
 ```js
 import { validator } from 'rich-validator';
