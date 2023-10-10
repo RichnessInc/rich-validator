@@ -1,6 +1,6 @@
 {
     "name": "rich-validator",
-    "version": "1.4.0",
+    "version": "1.5.0",
     "description": "Client Side Form Validator",
     "main": "index.js",
     "mode": "development",
