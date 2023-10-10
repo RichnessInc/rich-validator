@@ -54,22 +54,22 @@ function goodPassword(input) {
 	let message = '';
 	if (checkIfInputRequired(input)) {
 		if (password.length < 8) {
-			message = (checkAttribute(inputFile, 'data-password-error-min-length') ? inputFile.getAttribute('data-password-error-min-length') : attributeMessageHandler(inputFile) + ' Error: must be at least 8 characters');
+			message = (checkAttribute(input, 'data-password-error-min-length') ? input.getAttribute('data-password-error-min-length') : attributeMessageHandler(input) + ' Error: must be at least 8 characters');
 			status = true;
 		} else if (password.length > 32) {
-			message = (checkAttribute(inputFile, 'data-password-error-max-length') ? inputFile.getAttribute('data-password-error-max-length') : attributeMessageHandler(inputFile) + ' Error: Password is very long');
+			message = (checkAttribute(input, 'data-password-error-max-length') ? input.getAttribute('data-password-error-max-length') : attributeMessageHandler(input) + ' Error: Password is very long');
 			status = true;
 		} else if (password.search(/[a-z]/) < 0) {
-			message = (checkAttribute(inputFile, 'data-password-error-lowercase') ? inputFile.getAttribute('data-password-error-lowercase') : attributeMessageHandler(inputFile) + ' Error: Password must contain at least one lowercase letter');
+			message = (checkAttribute(input, 'data-password-error-lowercase') ? input.getAttribute('data-password-error-lowercase') : attributeMessageHandler(input) + ' Error: Password must contain at least one lowercase letter');
 			status = true;
 		} else if (password.search(/[A-Z]/) < 0) {
-			message = (checkAttribute(inputFile, 'data-password-error-uppercase') ? inputFile.getAttribute('data-password-error-uppercase') : attributeMessageHandler(inputFile) + ' Error: Password must contain at least one uppercase letter');
+			message = (checkAttribute(input, 'data-password-error-uppercase') ? input.getAttribute('data-password-error-uppercase') : attributeMessageHandler(input) + ' Error: Password must contain at least one uppercase letter');
 			status = true;
 		} else if (password.search(/[0-9]/) < 0) {
-			message = (checkAttribute(inputFile, 'data-password-error-number') ? inputFile.getAttribute('data-password-error-number') : attributeMessageHandler(inputFile) + ' Error: Password must contain at least one number');
+			message = (checkAttribute(input, 'data-password-error-number') ? input.getAttribute('data-password-error-number') : attributeMessageHandler(input) + ' Error: Password must contain at least one number');
 			status = true;
 		} else if (password.search(/[!%@&*\s]/) < 0) {
-			message = (checkAttribute(inputFile, 'data-password-error-spatial') ? inputFile.getAttribute('data-password-error-spatial') : attributeMessageHandler(inputFile) + ' Error: Password must contain at least spatial letter');
+			message = (checkAttribute(input, 'data-password-error-spatial') ? input.getAttribute('data-password-error-spatial') : attributeMessageHandler(input) + ' Error: Password must contain at least spatial letter');
 			status = true;
 		} else {
 			message = 'Success!';
