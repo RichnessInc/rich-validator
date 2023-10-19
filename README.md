@@ -182,3 +182,7 @@ if our library detect validation error for this input we append error message in
     data-password-error-spatial='Custom Password Minimum One Spatial Character Error Message'
     class='password' />
 ```
+
+## Donation
+
+<a href="https://www.buymeacoffee.com/Richness" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
